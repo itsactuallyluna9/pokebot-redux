@@ -15,9 +15,14 @@ async def do_auto_update(bot: Bot):
     # check for updates
     git_command = "git fetch"
     process = await subprocess.create_subprocess_shell(git_command, stdout=subprocess.PIPE)
+    _, _ = await process.communicate()
+
+    # get difference between local and remote
+    git_command = "git rev-list HEAD...origin/main --count"
+    process = await subprocess.create_subprocess_shell(git_command, stdout=subprocess.PIPE)
     stdout, _ = await process.communicate()
-    if not stdout:
-        return  # no updates
+    if int(stdout.decode().strip()) == 0:
+        return
     
     # we have updates!
 
@@ -58,7 +63,7 @@ async def do_auto_update(bot: Bot):
         extension = change.replace("/", ".").replace(".py", "")
         if changes[change] == "D":
             try:
-                bot.unload_extension(extension)
+                await bot.unload_extension(extension)
             except:
                 # ignore errors, because it's either not found or not loaded.
                 # so like, who cares?
@@ -66,15 +71,15 @@ async def do_auto_update(bot: Bot):
         elif changes[change] == "M":
             try:
                 try:
-                    bot.reload_extension(extension)
+                    await bot.reload_extension(extension)
                 except ExtensionNotLoaded:
                     # if it's not loaded, load it
-                    bot.load_extension(extension)
+                    await bot.load_extension(extension)
             except Exception as e:
                 print(f"Failed to reload {extension} due to {e}")
         elif changes[change] == "A":
             try:
-                bot.load_extension(extension)
+                await bot.load_extension(extension)
             except Exception as e:
                 print(f"Failed to load {extension} due to {e}")
         else:

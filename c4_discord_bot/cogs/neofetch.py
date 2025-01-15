@@ -14,7 +14,7 @@ class NeoFetch(Cog):
         embed = Embed(
             title="C4 Discord Bot",
             url="https://github.com/CornellCollegeComputingClub/discord-bot",
-            color=0xFF4000,
+            color=0xFF40FF,
         )
         embed.add_field(name="OS", value=f"{system()} {release()}")
         embed.add_field(name="Python Version", value=python_version(), inline=True)
