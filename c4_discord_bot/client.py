@@ -1,13 +1,20 @@
 import discord
 from discord.ext import commands
 from os import environ
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from functools import partial
+
+from c4_discord_bot.updater import do_auto_update
 
 
 class Client(commands.Bot):
+    scheduler = AsyncIOScheduler()
+
     async def on_ready(self):
         print(f"Logged on as {self.user}!")
 
     async def setup_hook(self):
+        await self.load_scheduler()
         await self.load_cogs()
         await self.sync_tree()
 
@@ -29,6 +36,13 @@ class Client(commands.Bot):
         if environ.get("ENV") == "development":
             await self.load_extension("c4_discord_bot.cogs.development")
         await self.load_extension("c4_discord_bot.cogs.neofetch")
+    
+    async def load_scheduler(self):
+        if environ.get("ENV") == "production" and not bool(environ.get("DISABLE_AUTO_UPDATE", False)):
+            self.scheduler.add_job(
+                do_auto_update, 'cron', args=(self,), hour='0', minute='10', second='0', jitter=120
+            )
+        self.scheduler.start()
 
 
 intents = discord.Intents.all()
