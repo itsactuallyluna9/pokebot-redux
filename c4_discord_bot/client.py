@@ -33,7 +33,6 @@ class Client(commands.Bot):
             await self.tree.sync()
 
     async def load_cogs(self):
-        await self.load_extension("c4_discord_bot.cogs.error")
         if environ.get("ENV") == "development":
             await self.load_extension("c4_discord_bot.cogs.development")
         await self.load_extension("c4_discord_bot.cogs.neofetch")
