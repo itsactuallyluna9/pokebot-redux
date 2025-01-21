@@ -33,6 +33,8 @@ class NeoFetch(Cog):
         )
         stdout, _ = await process.communicate()
         authors = stdout.decode().strip().split("\n")
+        if len(authors) == 0:
+            authors = ["0\tLuna"]
         # top authors = "author1, author2, author3"
         top_authors = ", ".join([author.split("\t")[1] for author in authors[:3]])
         tail = ""
