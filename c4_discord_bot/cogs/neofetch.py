@@ -1,14 +1,15 @@
-from discord.ext.commands import Cog, Bot
+from discord.ext.commands import Cog, Bot, command
 from discord import Interaction, Embed, app_commands
 from asyncio import subprocess
 from platform import system, release, python_version
+import shutil
 
 
 class NeoFetch(Cog):
     def __init__(self, bot: Bot):
         self.bot = bot
 
-    @app_commands.command()
+    @command()
     async def neofetch(self, interaction: Interaction):
         """Displays bot information."""
         embed = Embed(
@@ -18,7 +19,9 @@ class NeoFetch(Cog):
         )
         embed.add_field(name="OS", value=f"{system()} {release()}")
         embed.add_field(name="Python Version", value=python_version(), inline=True)
-        git_command = "git log -1 --pretty=format:'%h (%s)'"
+        
+        git_path = shutil.which("git") or "/usr/bin/git"
+        git_command = f"{git_path} log -1 --pretty=format:'%h (%s)'"
         process = await subprocess.create_subprocess_shell(
             git_command, stdout=subprocess.PIPE
         )
@@ -27,14 +30,12 @@ class NeoFetch(Cog):
         embed.add_field(name="Commit", value=commit)
 
         # authors: get top contributors
-        git_command = "git shortlog -s -n"
+        git_command = f"{git_path} shortlog -s -n"
         process = await subprocess.create_subprocess_shell(
             git_command, stdout=subprocess.PIPE
         )
         stdout, _ = await process.communicate()
         authors = stdout.decode().strip().split("\n")
-        if len(authors) == 0:
-            authors = ["0\tLuna"]
         # top authors = "author1, author2, author3"
         top_authors = ", ".join([author.split("\t")[1] for author in authors[:3]])
         tail = ""

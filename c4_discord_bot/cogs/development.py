@@ -1,6 +1,6 @@
 from typing import Optional
-from discord.ext.commands import Cog, Bot
-from discord import Interaction, app_commands, ui, TextStyle
+from discord.ext.commands import Cog, Bot, command
+from discord import Interaction, ui, TextStyle
 from time import perf_counter
 
 
@@ -43,7 +43,7 @@ class Development(Cog):
     def __init__(self, bot: Bot):
         self.bot = bot
 
-    @app_commands.command()
+    @command()
     async def reload_extensions(self, interaction: Interaction, module: Optional[str]):
         """Reloads all extensions or a specific extension.
 
@@ -76,7 +76,7 @@ class Development(Cog):
                     f"Reloaded all {len(extensions)} extensions!"
                 )
 
-    @app_commands.command()
+    @command()
     async def load_extension(self, interaction: Interaction, module: str):
         """Loads an extension.
 
@@ -90,14 +90,14 @@ class Development(Cog):
         except Exception as e:
             await interaction.followup.send(f"Error: {e}")
 
-    @app_commands.command()
+    @command()
     async def reload_commands(self, interaction: Interaction):
         """Reloads the commands."""
         await interaction.response.defer(ephemeral=True)
         await self.bot.sync_tree()
         await interaction.followup.send("Reloaded commands!")
 
-    @app_commands.command()
+    @command()
     async def async_eval(self, interaction: Interaction):
         """Evaluates potentially async code. Add `return` to recieve the result."""
         await interaction.response.send_modal(EvalModal())
