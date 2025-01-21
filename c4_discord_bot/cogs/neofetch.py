@@ -1,15 +1,14 @@
-from discord.ext.commands import Cog, Bot, command
+from discord.ext.commands import Cog, Bot
 from discord import Interaction, Embed, app_commands
 from asyncio import subprocess
 from platform import system, release, python_version
 import shutil
 
-
 class NeoFetch(Cog):
     def __init__(self, bot: Bot):
         self.bot = bot
 
-    @command()
+    @app_commands.command()
     async def neofetch(self, interaction: Interaction):
         """Displays bot information."""
         embed = Embed(
