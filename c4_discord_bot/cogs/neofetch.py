@@ -29,7 +29,7 @@ class NeoFetch(Cog):
         embed.add_field(name="Commit", value=commit)
 
         # authors: get top contributors
-        git_command = f"{git_path} shortlog -s -n"
+        git_command = f"{git_path} log --pretty=short | {git_path} shortlog -s -n"
         process = await subprocess.create_subprocess_shell(
             git_command, stdout=subprocess.PIPE
         )
