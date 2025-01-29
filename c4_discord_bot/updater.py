@@ -84,6 +84,7 @@ async def do_auto_update(bot: Bot):
                 print(f"Failed to load {extension} due to {e}")
         else:
             print(f"Unknown status {changes[change]} for {change}")
-    
+    # resync commands
+    await bot.tree.sync()
     # set bot status and activity
     await bot.change_presence(activity=None, status=discord.Status.online)
