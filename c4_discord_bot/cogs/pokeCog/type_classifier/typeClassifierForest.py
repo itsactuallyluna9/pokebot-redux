@@ -3,13 +3,13 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 
-from type_classifier.typeUtils import tokenizeText, encodeType, decodeType, encodeName
+from c4_discord_bot.cogs.pokeCog.type_classifier.typeUtils import tokenizeText, encodeType, decodeType, encodeName
 
-data_path = 'type_classifier/data/type_syllable.csv'
+data_path = 'c4_discord_bot/cogs/pokeCog/type_classifier/data/type_syllable.csv'
 data = pd.read_csv(data_path)
 
-default_type1_forest_path = 'type_classifier/models/type1forest.pkl'
-default_type2_forest_path = 'type_classifier/models/type2forest.pkl'
+default_type1_forest_path = 'c4_discord_bot/cogs/pokeCog/type_classifier/models/type1forest.pkl'
+default_type2_forest_path = 'c4_discord_bot/cogs/pokeCog/type_classifier/models/type2forest.pkl'
 
 def train_fit_forest(
     type_to_classify, data=data, n_estimators=100, max_depth=None, min_samples_split=2, min_samples_leaf=1, 
@@ -70,12 +70,12 @@ def train_fit_forest(
 
 def save_forest(forest, filename): 
     # takes a trained and fitted RandomForestClassifier and writes it to the specified filename in type_classifier/models
-    filename = 'type_classifier/models/' + filename #add directory
+    filename = 'c4_discord_bot/cogs/pokeCog/type_classifier/models/' + filename #add directory
     joblib.dump(forest, filename) #write to file
 
 def load_forest(filename):
     # take a filename, load and return the RandomForestClassifier from type_classifier/models/[filename]
-    filename = 'type_classifier/models/' + filename
+    filename = 'c4_discord_bot/cogs/pokeCog/type_classifier/models/' + filename
     forest = joblib.load(filename)
     return forest
 

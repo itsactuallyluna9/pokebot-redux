@@ -1,9 +1,9 @@
 import torch
-from namegen.nameModel import NameModel 
+from c4_discord_bot.cogs.pokeCog.namegen.nameModel import NameModel 
 import numpy as np
 import pandas as pd
 import random
-from namegen.syllabizeNames import syllabizeNameList
+from c4_discord_bot.cogs.pokeCog.namegen.syllabizeNames import syllabizeNameList
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -11,15 +11,15 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 seq_len = 20
 
 #default model
-model_path = 'namegen/weights/savedmodels/thechosenone-12.11.e448.pth'
+model_path = 'c4_discord_bot/cogs/pokeCog/namegen/weights/savedmodels/thechosenone-12.11.e448.pth'
 
 #get initial text for list of names for prompting model
-names = 'namegen/data/names.csv'
+names = 'c4_discord_bot/cogs/pokeCog/namegen/data/names.csv'
 raw_text = open(names, encoding='utf-8').read()
 raw_text = raw_text.lower()
 
 #load syllables from dataset
-fullData = 'namegen/data/finalData.csv'
+fullData = 'c4_discord_bot/cogs/pokeCog/namegen/data/finalData.csv'
 fullData = pd.read_csv(fullData)
 syllables = fullData['syllables']
 firstSyllables = []

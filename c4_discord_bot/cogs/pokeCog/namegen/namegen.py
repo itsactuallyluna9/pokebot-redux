@@ -1,7 +1,7 @@
 # base class for accessing the namegen subpackage internally
 
-import namegen.nameGenInterface as ngi
-import namegen.modelEvaluator as evaluator
+import c4_discord_bot.cogs.pokeCog.namegen.nameGenInterface as ngi
+import c4_discord_bot.cogs.pokeCog.namegen.modelEvaluator as evaluator
 
 class NameGen:
     def __init__(self, mode='default'):
@@ -9,7 +9,7 @@ class NameGen:
         
         match mode:
             case 'default':
-                best_model, char_to_int, n_vocab, loss, int_to_char, model = ngi.loadModel('namegen/weights/savedmodels/thechosenone-12.11.e448.pth')
+                best_model, char_to_int, n_vocab, loss, int_to_char, model = ngi.loadModel('c4_discord_bot/cogs/pokeCog/namegen/weights/savedmodels/thechosenone-12.11.e448.pth')
             case 'gemini':
                 #to be implemented, will interface with gemini api to have it generate the names directly
                 pass

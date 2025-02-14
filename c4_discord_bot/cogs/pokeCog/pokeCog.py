@@ -3,7 +3,7 @@ from discord.ext import commands
 from typing import Optional
 import json
 
-from pokebot_evolved import PokebotEvolved
+from .pokebot_evolved import PokebotEvolved
 
 class PokeCog(commands.Cog):
     
@@ -14,6 +14,9 @@ class PokeCog(commands.Cog):
     @app_commands.describe(name='Enter a name to generate information for (optional)')
     async def generate(self, interaction: Interaction, name: Optional[str]=None):
         #entry = await PokebotEvolved.generateFullEntry(prompt=name)
-        entry = await PokebotEvolved.nameTypeStat(prompt=name)
+        entry = await PokebotEvolved().nameTypeStat(prompt=name)
         out = json.dumps(entry)
         await interaction.response.send_message(out)
+
+async def setup(bot):
+    await bot.add_cog(PokeCog(bot))

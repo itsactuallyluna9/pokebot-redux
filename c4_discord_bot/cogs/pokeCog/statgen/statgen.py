@@ -2,13 +2,13 @@ import pandas as pd
 import numpy as np
 import joblib
 from sklearn.multioutput import MultiOutputRegressor
-from statgen.statgenTraining import encodeName, encodeType
+from c4_discord_bot.cogs.pokeCog.statgen.statgenTraining import encodeName, encodeType
 
 class StatGen:
     
     def __init__(self):
         
-        self.model = joblib.load('statgen/models/statgen.pkl')
+        self.model = joblib.load('c4_discord_bot/cogs/pokeCog/statgen/models/statgen.pkl')
         
     def predictStats(self, name, types):
         #takes str name and Tuple(str, str) types

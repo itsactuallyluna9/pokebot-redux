@@ -96,7 +96,7 @@ for epoch in range(n_epochs):
                 
             print("Epoch %d: Cross-entropy: %.4f" % (epoch + 1, loss))
     
-    path = f"namegen/weights/12-11 2 hidden layers/namegenweightsepoch{epoch+1}loss{int(loss)}.pth"
+    path = f"c4_discord_bot/cogs/pokeCog/namegen/weights/12-11 2 hidden layers/namegenweightsepoch{epoch+1}loss{int(loss)}.pth"
     torch.save([best_model, char_to_int, n_vocab, loss], path)
     print(f'\nModel weights saved as {path}\n')
 
