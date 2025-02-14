@@ -28,7 +28,8 @@ class PokebotEvolved:
         self.sg = StatGen()
         
         config = dotenv.dotenv_values('gemini_integration/.env')
-        api_key = config['API_KEY_SERVICE']
+        # api_key = config['API_KEY_SERVICE']
+        api_key = None
         
         genai.configure(api_key=api_key)
         self.gemini_model = genai.GenerativeModel()

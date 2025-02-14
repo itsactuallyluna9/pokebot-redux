@@ -14,8 +14,12 @@ class PokeCog(commands.Cog):
     @app_commands.describe(name='Enter a name to generate information for (optional)')
     async def generate(self, interaction: Interaction, name: Optional[str]=None):
         #entry = await PokebotEvolved.generateFullEntry(prompt=name)
-        entry = await PokebotEvolved().nameTypeStat(prompt=name)
-        out = json.dumps(entry)
+        entry = PokebotEvolved().nameTypeStat(prompt=name)
+        new_entry = list()
+        new_entry.append(entry[0])
+        new_entry.append(entry[1])
+        new_entry.append(list(int(x) for x in entry[2]))
+        out = json.dumps(new_entry)
         await interaction.response.send_message(out)
 
 async def setup(bot):
