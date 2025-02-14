@@ -11,6 +11,12 @@ dependencies = [
     "python-dotenv>=1.0.1,<2",
     "apscheduler>=3.11.0,<4",
     "pillow>=11.1.0,<12",
+    "scikit-learn>=1.6.1",
+    "numpy>=2.2.3",
+    "pandas>=2.2.3",
+    "joblib>=1.4.2",
+    "keras>=3.8.0",
+    "google-genai>=1.2.0",
 ]
 
 [build-system]
