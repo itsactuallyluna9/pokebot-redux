@@ -4,7 +4,7 @@ Hello! This guide will guide you in making your very own command for C4's Discor
 
 ## Setting Up Your Environment
 
-In order to work on the bot, you will first need to have Python 3.11 (or above), git, and poetry installed. Additionally, you will need a GitHub account so you can add your work later, a Discord account, and we recommend usign VS Code to work on your code.
+In order to work on the bot, you will first need to have Python 3.11 (or above), git, and poetry installed. Additionally, you will need a GitHub account so you can add your work later, a Discord account, and we recommend using VS Code to work on your code.
 
 With the necessities out of the way, let's set up your environment!
 
