@@ -1,10 +1,10 @@
 #the discord bot to integrate with the neural network models, accept prompts, and post its output in discord servers
 import pandas as pd
 import numpy as np
-from namegen.namegen import NameGen
-from type_classifier.typeClassifier import TypeClassifier
-from statgen.statgen import StatGen
-import type_classifier.typeClassifierForest as t
+from c4_discord_bot.cogs.pokeCog.namegen.namegen import NameGen
+from c4_discord_bot.cogs.pokeCog.type_classifier.typeClassifier import TypeClassifier
+from c4_discord_bot.cogs.pokeCog.statgen.statgen import StatGen
+import c4_discord_bot.cogs.pokeCog.type_classifier.typeClassifierForest as t
 
 import google.generativeai as genai
 import json

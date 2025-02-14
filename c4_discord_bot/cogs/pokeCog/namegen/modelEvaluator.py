@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import random
 
-from namegen import nameGenInterface
+from c4_discord_bot.cogs.pokeCog.namegen import nameGenInterface
 
 
 def populateDirectoryList(dir_path):

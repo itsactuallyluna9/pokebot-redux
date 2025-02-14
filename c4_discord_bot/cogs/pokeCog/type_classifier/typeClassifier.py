@@ -1,6 +1,6 @@
 #interface class for the type classifier module
 
-import type_classifier.typeClassifierForest as t
+import c4_discord_bot.cogs.pokeCog.type_classifier.typeClassifierForest as t
 
 default_f1 = 'type1forest.pkl'
 default_f2 = 'type2forest.pkl'
