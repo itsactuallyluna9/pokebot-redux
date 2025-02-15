@@ -3,7 +3,6 @@ from c4_discord_bot.cogs.pokeCog.namegen.nameModel import NameModel
 import numpy as np
 import pandas as pd
 import random
-from c4_discord_bot.cogs.pokeCog.namegen.syllabizeNames import syllabizeNameList
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -164,15 +163,3 @@ def testModels(model_path_list, n_names=5, prompt=None): #displays results with 
         genList(prompt=prompt, n_names=n_names, silent=True, specific_model=curr_model)
         
         print('\n----------\n')
-
-
-def syllabizeName(name): #wrapper for the syllabizeNames.syllabizeNameList() function
-    return syllabizeNameList([name])[0][1]
-
-    
-
-# genList(prompt=None, n_names=20, silent=True)
-
-# print(generate(silent=True, include_syllables=True))
-
-# testModels(path_list)
