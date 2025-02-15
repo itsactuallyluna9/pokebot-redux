@@ -59,37 +59,3 @@ def encodeType(type_str):
             case _: raise ValueError('Invalid type entered')
             
         return type_int
-
-def main():
-
-    data = pd.read_csv('statgen/data/finalData.csv')
-
-    names = data[['name_en']]
-    types = data[['type_0', 'type_1']]
-    stats = data[['base_hp', 'base_atk', 'base_def', 'base_spatk', 'base_spdef', 'base_speed']]
-
-    encoded_names = []
-
-    for index, row in names.iterrows():
-        name = encodeName(names.loc[index, 'name_en'])
-        encoded_names.append(name)
-        
-    encoded_names = pd.DataFrame(encoded_names, columns=['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11'])
-
-    for index, row in types.iterrows():
-        for i in range(2):
-            types.loc[index, f'type_{i}'] = encodeType(row[i])
-            
-    X = encoded_names.join(types)
-    y = stats
-
-    MOR = MultiOutputRegressor(estimator=RandomForestRegressor())
-
-    MOR.fit(X, y)
-
-    kevin = pd.DataFrame([[x for x in encodeName('Kevin')]], columns=['c0', 'c1', 'c2', 'c3', 'c4', 'c5', 'c6', 'c7', 'c8', 'c9', 'c10', 'c11'])
-    kevin = kevin.join(pd.DataFrame([[7, 18]], columns=['type_0', 'type_1']))
-
-    print(MOR.predict(kevin))
-
-    joblib.dump(MOR, 'statgen/models/statgen.pkl')

@@ -31,7 +31,7 @@ class PokebotEvolved:
             if not os.environ.get('GEMINI_API_KEY'):
                 raise ValueError('GEMINI_API_KEY environment variable not set')
             api_key = os.environ.get('GEMINI_API_KEY')
-            
+
             genai.configure(api_key=api_key)
             self.gemini_model = genai.GenerativeModel()
         
@@ -70,39 +70,13 @@ class PokebotEvolved:
         return stats.astype(int)
     
     
-    def genNamesTypes(self, n_names=1, print_to_console=True, prompt=None):
-        
-        names = []
-        
-        for n in range(n_names):
-            
-            name = self.generateName(print_to_console=False, prompt=prompt)
-            types = self.predictTypes(name)
-            
-            if types[1] is None: types = types[0]
-            else: types = types[0] + ', ' + types[1]
-            
-            names.append([name, types])
-            
-        if print_to_console:
-            print('\n----------\n')
-            for name in names:
-                print(f'Pokemon: {name[0]}')
-                print(f'Types: {name[1]}')
-                print('\n')
-            print('\n----------\n')
-        
-        if n_names == 1: return names[0]
-        return names
-    
-    
     def nameTypeStat(self, prompt=None, n_to_gen=1, print_to_console=True):
         
         results = []
         
         if print_to_console: print('\n----------\n')
+        for _ in range (n_to_gen):
         
-        for n in range (n_to_gen):
             
             name = self.generateName(prompt=prompt, print_to_console=False)
             types = self.predictTypes(name)
@@ -191,8 +165,8 @@ class PokebotEvolved:
         #calls the generateFullEntry function n_to_generate times, returns [dict]
         
         output = []
+        for _ in range(n_to_generate):
         
-        for n in range(n_to_generate): 
             output.append(self.generateFullEntry(prompt=prompt, print_to_console=print_to_console))
             
         return output

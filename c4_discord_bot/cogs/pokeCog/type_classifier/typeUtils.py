@@ -20,14 +20,6 @@ def tokenizeText(text):
     chars = [char_to_int[char] for char in list(text) if char in legal_chars]
     return chars
 
-def tokenizeNameSyllables(name):
-    # take input string, return list[list[int]] of the initial string broken into syllables, and each syllable encoded with tokenizeText()
-    syllabized = syllabize(name)
-    for i in range(len(syllabized)):
-        syllabized[i] = [char_to_int[char] for char in syllabized[i]]
-    print(syllabized)
-    return syllabized
-
 def syllabize(name):
     
     name = word_tokenize(name)
