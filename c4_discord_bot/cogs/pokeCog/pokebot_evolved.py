@@ -8,7 +8,6 @@ import c4_discord_bot.cogs.pokeCog.type_classifier.typeClassifierForest as t
 
 import google.generativeai as genai
 import json
-import dotenv
 import os
 
 #suppress warnings
@@ -18,21 +17,23 @@ os.environ["GLOG_minloglevel"] = "2"
 
 class PokebotEvolved:
     
-    def __init__(self, mode='default', type_forest_paths=[None, None]):
+    def __init__(self, mode='default', type_forest_paths=[None, None], use_gemini=False):
         
         self.mode = mode
+        self.use_gemini = use_gemini
         self.namegen = NameGen(mode)
         
         self.tc = TypeClassifier(type_forest_paths[0], type_forest_paths[1])
         
         self.sg = StatGen()
         
-        config = dotenv.dotenv_values('gemini_integration/.env')
-        # api_key = config['API_KEY_SERVICE']
-        api_key = None
-        
-        genai.configure(api_key=api_key)
-        self.gemini_model = genai.GenerativeModel()
+        if use_gemini:
+            if not os.environ.get('GEMINI_API_KEY'):
+                raise ValueError('GEMINI_API_KEY environment variable not set')
+            api_key = os.environ.get('GEMINI_API_KEY')
+            
+            genai.configure(api_key=api_key)
+            self.gemini_model = genai.GenerativeModel()
         
         
     def generateName(self, prompt=None, n_names=1, print_to_console=True, show_syllables=False):
@@ -123,6 +124,11 @@ class PokebotEvolved:
         
     def generateDescription(self, name, types, stats):
         #configured to take input from nameTypeStat()
+
+        if self.use_gemini == False:
+            category = '???'
+            description = '???'
+            return category, description
         
         prompt = f"""
             Generate a description and Pokedex category for the new {types} type Pokemon {name} in the style of the entries from the Pokemon games. 
@@ -190,9 +196,3 @@ class PokebotEvolved:
             output.append(self.generateFullEntry(prompt=prompt, print_to_console=print_to_console))
             
         return output
-            
-        
-    def main(self):
-        
-        pb = PokebotEvolved()
-        pb.generateMultipleEntries()
