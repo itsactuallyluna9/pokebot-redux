@@ -150,16 +150,3 @@ def genList(n_names=5, prompt=None, silent=True, specific_model=None, show_sylla
         list[i] = name
         
     return list
-
-
-def testModels(model_path_list, n_names=5, prompt=None): #displays results with the specified parameters for all models in the model_path_list
-    
-    print('\n----------\n')
-    
-    for path in model_path_list:
-        
-        _, _, _, _, _, curr_model = loadModel(path, silent=False)
-        
-        genList(prompt=prompt, n_names=n_names, silent=True, specific_model=curr_model)
-        
-        print('\n----------\n')

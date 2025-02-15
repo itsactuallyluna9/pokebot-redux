@@ -1,7 +1,6 @@
 # base class for accessing the namegen subpackage internally
 
 import c4_discord_bot.cogs.pokeCog.namegen.nameGenInterface as ngi
-import c4_discord_bot.cogs.pokeCog.namegen.modelEvaluator as evaluator
 
 class NameGen:
     def __init__(self, mode='default'):

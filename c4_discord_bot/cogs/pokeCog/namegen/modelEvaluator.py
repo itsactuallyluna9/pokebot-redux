@@ -2,8 +2,6 @@
 
 import random
 
-from c4_discord_bot.cogs.pokeCog.namegen import nameGenInterface
-
 
 def randomIndexes(n_indexes, max_value, min_value=1):
     indexes = []
@@ -13,5 +11,3 @@ def randomIndexes(n_indexes, max_value, min_value=1):
 
 
 indexes = sorted(randomIndexes(n_indexes=20, max_value=500))
-spread = [0, 99, 199, 299, 399, 499]
-specific_range = [x for x in range(399, 500, 1)]
