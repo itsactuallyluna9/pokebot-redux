@@ -100,8 +100,8 @@ class PokebotEvolved:
         #configured to take input from nameTypeStat()
 
         if self.use_gemini == False:
-            category = '???'
-            description = '???'
+            category = None
+            description = ''
             return category, description
         
         prompt = f"""
