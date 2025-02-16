@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 import joblib
-from sklearn.multioutput import MultiOutputRegressor
-from c4_discord_bot.cogs.pokeCog.statgen.statgenTraining import encodeName, encodeType
+from c4_discord_bot.cogs.pokeCog.statgen.statgenTraining import encodeName
+from c4_discord_bot.cogs.pokeCog.type_classifier.typeUtils import encodeType
 
 class StatGen:
     
