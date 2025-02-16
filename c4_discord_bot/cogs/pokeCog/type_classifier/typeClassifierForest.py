@@ -1,9 +1,7 @@
 import pandas as pd
-import numpy as np
-from sklearn.ensemble import RandomForestClassifier
 import joblib
 
-from c4_discord_bot.cogs.pokeCog.type_classifier.typeUtils import tokenizeText, encodeType, decodeType, encodeName
+from c4_discord_bot.cogs.pokeCog.type_classifier.typeUtils import encodeType, decodeType, encodeName
 
 data_path = 'c4_discord_bot/cogs/pokeCog/type_classifier/data/type_syllable.csv'
 data = pd.read_csv(data_path)
