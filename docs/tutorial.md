@@ -14,18 +14,17 @@ Next, we must clone the repository to your computer. You may use a GUI if you ha
 
 ```sh
 luna (~) > cd Documents/Code
-luna (~/D/Code) > git cline https://github.com/itsactuallyluna9/c4-discord-bot.git
+luna (~/D/Code) > git clone https://github.com/itsactuallyluna9/c4-discord-bot.git
 
 luna (~/D/Code) > cd c4-discord-bot
 luna (~/D/C/c4-discord-bot) > # we have our code!
 ```
 
-We now have the code on our computer! We still have a bit of work to do, like installing all of our dependencies, and setting up a testing bot. For dependencies, this is easily accomplished by running the following command in the `c4-discord-bot` directory we just downloaded:
+We now have the code on our computer! We still have a bit of work to do, like setting up a testing bot. (As for dependencies, they'll be automatically installed as soon as we run the bot for the first time. Neat!)
 
 While we're here, we'll also make a copy of our environment file to fill in later.
 
 ```sh
-$ poetry install
 $ cp .env.example .env
 ```
 
@@ -61,7 +60,7 @@ Right then, we're good to go!
 To run the bot, simply run the following command:
 
 ```sh
-$ poetry run python -m c4_discord_bot
+$ uv run python -m c4_discord_bot
 ```
 
 This will, assuming everything works correctly, load the `.env` file, and connect your bot to Discord, registering the commands to your testing server immediately. You can check by going to your Discord and ensuring that the bot is online.
