@@ -2,7 +2,7 @@
 
 This is C4's offical Discord Bot! Current students can freely add to the bot, which is present in out Discord server.
 
-If you are intrested in contributing, please make a fork of this repository. Get in touch with s if you have any questions!
+If you are intrested in contributing, please make a fork of this repository. Get in touch with us if you have any questions!
 
 The Bot channel of our Discord server is a great place to get advice from club executives, other students, and the occasional alumni.
 
@@ -19,3 +19,4 @@ When in development mode, updates can be triggered manually via the `/reload_ext
 ## Special Thanks
 
 * [Luna](https://github.com/itsactuallyluna9) - Hosting
+* [Willow](https://github.com/willowdennison) - Original [PokeBot](https://github.com/willowdennison/pokebot_evolved) Program
